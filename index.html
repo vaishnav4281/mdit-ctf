@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDIT Engineering College CTF Challenge</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="web-pattern"></div>
+    <div class="floating-dots"></div>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="nav-logo">MDIT CTF</div>
+            <div class="nav-score">Score: <span id="nav-score-value">0</span></div>
+            <button id="refresh-btn" class="refresh-button" onclick="resetGame()">
+                <span class="refresh-icon">↻</span> Reset Game
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="quote-container">
+                <p class="quote">"With great power comes great responsibility..."</p>
+                <div class="web-decoration">🕸️</div>
+            </div>
+            <div class="clgname">
+            <h1>MDIT Engineerin College</h1>
+            <h2>Capture The Flag Challenge</h2>
+            </div>
+        </header>
+
+        <div class="categories">
+            <!-- Cryptography Section -->
+            <section class="category crypto">
+                <h2>Cryptography</h2>
+                <p class="category-desc">Test your skills in decoding encrypted messages and breaking ciphers.</p>
+                <div class="challenges">
+                    <div class="challenge-card" data-points="10" data-id="base64">
+                        <h3>Base64 Mystery</h3>
+                        <p>Decode this: RkxBR3s2OX0=</p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+
+                    <div class="challenge-card" data-points="10" data-id="caesar">
+                        <h3>Caesar's Secret</h3>
+                        <p>Decrypt: KQFL{HNUMJW}</p>
+                        <p>shift 5</p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+
+                    <div class="challenge-card" data-points="10" data-id="hex">
+                        <h3>Hex Riddle</h3>
+                        <p>Convert: 666C61677B6865785F66756E7D</p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+
+                    <div class="challenge-card" data-points="10" data-id="binary">
+                        <h3>Binary Code</h3>
+                        <p>Decode: 01100110 01101100 01100001 01100111</p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+
+                    <div class="challenge-card" data-points="10" data-id="morse">
+                        <h3>Morse Mystery</h3>
+                        <p>Decode: ..-. .-.. .- --. -- -.. .. -</p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="category">
+                <h2>Important Resources</h2>
+                <div class="resources-container">
+                    <div class="resource-card">
+                        <h3>Web Challenge</h3>
+                        <p>Visit this website to solve web challenges:</p>
+                        <a href="https://squid-game-ctf.vercel.app/" target="_blank" class="resource-link">
+                            Squid Game CTF Website
+                            <span class="link-icon">🔗</span>
+                        </a>
+                    </div>
+
+                    <div class="resource-card">
+                        <h3>Steganography Files</h3>
+                        <p>Download required files for steganography challenges:</p>
+                        <a href="https://drive.google.com/drive/folders/1gtNT-C55pErFHdN4GyaeKxTOBC1QlJmT" target="_blank" class="resource-link">
+                            Google Drive Folder
+                            <span class="link-icon">📁</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Steganography Section -->
+            <section class="category stego">
+                <h2>Steganography</h2>
+                    <div class="challenge-card" data-points="10" data-id="hidden-image-1">
+                        <h3>Hidden Image 1</h3>
+                        <p>Hidden text inside in image 1?</p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+
+                    <div class="challenge-card" data-points="10" data-id="image-flag-decoder">
+                        <h3>Image Flag Decoder</h3>
+                        <p>Decode the flag from image 2?</p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+
+                    <div class="challenge-card" data-points="10" data-id="file-author">
+                        <h3>File Author</h3>
+                        <p>Who is the Author of file?</p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+
+                    <div class="challenge-card" data-points="10" data-id="file-keywords">
+                        <h3>File Keywords</h3>
+                        <p>What is the keywords in the file? (MetaData)</p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Web Section -->
+            <section class="category web">
+                <h2>Web Exploitation</h2>
+                <p class="category-desc">Test your web hacking skills.</p>
+                <div class="challenges">
+                    <div class="challenge-card" data-points="10" data-id="dashboard-hunt">
+                        <h3>Dashboard Hunt</h3>
+                        <p>Navigate to the dashboard. What secret lies within?<br>
+                           <em>Hint: Sometimes the obvious path leads to hidden treasures.</em></p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+
+                    <div class="challenge-card" data-points="10" data-id="getting-started">
+                        <h3>Getting Started</h3>
+                        <p>The beginning is often the key. What happens when you take the first step?<br>
+                           <em>Hint: Every journey begins with a single click.</em></p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+
+                    <div class="challenge-card" data-points="10" data-id="logo-mystery">
+                        <h3>Mystery</h3>
+                        <p>Something special is hidden in plain sight. Have you clicked everywhere?<br>
+                           <em>Hint:objects can be more than just objects.</em></p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+
+                    <div class="challenge-card" data-points="10" data-id="social-decode">
+                        <h3>Social Decode</h3>
+                        <p>A click leads to a code. Can you decode what's hidden in the social links?<br>
+                           <em>Hint: Do you care about social media ?</em></p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+
+                    <div class="challenge-card" data-points="10" data-id="about-section-secret">
+                        <h3>About Section Secret</h3>
+                        <p>The about section holds a special surprise. Did you look carefully enough?<br>
+                           <em>Hint: Sometimes the game references hide more than just stories.</em></p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Riddles Section -->
+            <section class="category riddles">
+                <h2>Riddles</h2>
+                <p class="category-desc">Solve these brain-teasing riddles to find the flags.</p>
+                <div class="challenges">
+                    <div class="challenge-card" data-points="10" data-id="mathematical-mystery">
+                        <h3>check the file</h3>
+                        <p>Check this file for something needy 🔎🪟</p>
+                           <p> https://drive.usercontent.google.com/uc?id=1HcfTfZBRkhMxfh5Ib0Wm7YT2fUu0Diht&export=download</p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+
+                    <div class="challenge-card" data-points="10" data-id="time-riddle">
+                        <h3>Scrambled Word</h3>
+                        <p>Heard you are brave and a decoder 👀 Find this word Missing in crowd  </p>  
+                        <p>Hint : unscramble to get the word </p>  
+                        <p> LInk : https://riyan-hx.github.io/Scrambled_flags/scramblehr.html  </p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+
+                    <div class="challenge-card" data-points="10" data-id="word-play">
+                        <h3>Scrambled Word</h3>
+                        <p>What about unscrambling this one and hold on hands 😸 </p>
+                        <p> Hint : unscramble to get the word </p>
+                        <p>https://riyan-hx.github.io/Scrambled_flags/escramble.html</p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+
+                    <div class="challenge-card" data-points="10" data-id="color-riddle">
+                        <h3>Cracked </h3>
+                        <p>Lets Hack this Zip and Find Something Interesting!👨🏻‍💻</p>
+                           <p> Zip File : https://drive.usercontent.google.com/download?id=1Ic2DlFhbo8by284ULGA0hYzOjCTclZ3E&export=download</p>
+                              <p> Hint : Use this site for Cracking : https://riyan-hx.github.io/Scrambled_flags/zipcrack.html</p>
+                        <div class="flag-input">
+                            <input type="text" placeholder="Enter flag">
+                            <button onclick="checkFlag(this)">Submit</button>
+                        </div>
+                        <div class="status"></div>
+                        <div class="points">10 pts</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
