@@ -1,4 +1,4 @@
-```markdown
+
 # 🕷️ Spider-Man CTF Flag Submission Page 🕸️
 
 Bring the thrill of Spider-Man into your CTF event with this interactive and web-themed flag submission page! Swing into action and immerse participants in a Spider-Man-inspired experience.
